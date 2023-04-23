@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>All Article</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+
+    <style>
+        .article-img img{
+            width: 100%;
+        }
+    </style>
+
+</head>
+<body>
+     <div class="container  mt-5 rounded" >
+         <h3> Article Management System</h3>
+         <a th:href="@{/form-add-article}" class="btn btn-primary">Add New Post</a>
+         <table class="table">
+             <thead>
+             <tr>
+                 <th scope="col">#</th>
+                 <th scope="col">Image</th>
+
+
+                 <th scope="col">#</th>
+                 <th scope="col">Title</th>
+                 <th scope="col">Description</th>
+                 <th scope="col">Author Name</th>
+                 <th scope="col">Action</th>
+
+             </tr>
+             </thead>
+             <tr th:each="article : ${allArticle}">
+                 <th scope="row" th:text="${article.id}"></th>
+                 <th scope="article-img" >
+                     <img th:src="${article.imgUrl}" alt="">
+                 </th>
+                 <td colspan="2" th:text="${article.description}">Larry the Bird</td>
+                 <td th:text="${article.author.name}">@twitter</td>
+                 <td>
+                     <div>
+                         <a th:href="@{/post/{postID}(postID=${article.id})}" class="btn btn-warning">View</a>
+                         <a class="btn btn-danger">Deleted</a>
+                     </div>
+                 </td>
+             </tr>
+             </tbody>
+         </table>
+     </div>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+
+</body>
+</html>
